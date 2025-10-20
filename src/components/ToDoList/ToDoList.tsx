@@ -1,22 +1,51 @@
+import { ToDo } from '../../models/todo-item'
 import './ToDoList.scss'
 import { ToDoListItem } from "./ToDoListItem/ToDoListIltem"
 
-export const ToDoList = () => {
+
+export const ToDoList = (props: { todos: ToDo[], updateToDo: Function, deleteToDo: Function }) => {
+    const ckeckedList = () => {
+        return (
+            props.todos
+                .filter((item) => !item.isDone)
+                .map((item, idx) => {
+                    return (
+                        <ToDoListItem
+                            toDoItem={item}
+                            key={idx}
+                            updateToDo={props.updateToDo}
+                            deleteToDo={props.deleteToDo}
+                        />
+                    )
+                })
+        )
+    }
+
+    const unckeckedList = () => {
+        return (
+            props.todos
+                .filter((item) => item.isDone)
+                .map((item, idx) => {
+                    return (
+                        <ToDoListItem
+                            toDoItem={item}
+                            key={idx}
+                            updateToDo={props.updateToDo}
+                            deleteToDo={props.deleteToDo}
+                        />
+                    )
+                })
+        )
+    }
+
     return (
 
         <div className="todo-container">
             <ul className="todo-list failed">
-                <ToDoListItem />
+                {ckeckedList()}
             </ul>
             <ul className="todo-list completed">
-                <ToDoListItem />
-                {/*<li className="todo-list-item__wrapper">
-                    <span>Вторая задача</span>
-                    <div className="todo-list-item__buttons">
-                        <button className="btn-trash"></button>
-                        <button className="btn-uncheck"></button>
-                    </div>
-                </li>*/}
+                {unckeckedList()}
             </ul>
         </div>
     )
