@@ -14,9 +14,9 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.5",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
-    "homepage": "https://mileni67.github.io/toDoList-React-TS"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,5 +48,18 @@
     "gh-pages": "^6.3.0",
     "install": "^0.13.0",
     "sass": "^1.93.2"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mileni67/toDoList-React-TS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mileni67/toDoList-React-TS/issues"
+  },
+  "homepage": "https://mileni67.github.io/toDoList-React-TS"
 }
