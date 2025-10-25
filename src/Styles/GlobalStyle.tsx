@@ -1,8 +1,13 @@
-* {
-    box-sizing: border-box;
-}
+import { createGlobalStyle } from "styled-components";
+import normalize from "styled-normalize";
 
-body {
+export const GlobalStyle = createGlobalStyle`
+    ${normalize}
+    * {
+    box-sizing: border-box;
+    }
+
+    body {
     background-color: #edf0f1;
     padding: 50px 0 0 0;
     font-family: 'Roboto', sans-serif;
@@ -11,9 +16,11 @@ body {
     color: black;
 }
 
-.container {
+    .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-}
+} 
+
+`
