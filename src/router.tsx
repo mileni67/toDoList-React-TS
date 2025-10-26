@@ -19,4 +19,7 @@ export const router = createBrowserRouter(
         },
         { path: '*', element: <NotFound /> }
     ],
+    {
+        basename: process.env.PUBLIC_URL
+    }
 );
