@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import todoReducer from './features/todoList'
+import themeReducer from './features/themeList'
 import { loadFromLocalStorage, saveToLocalStorage } from './helpers/storage'
 
 const rootReducer = combineReducers({
-    todoList: todoReducer,
+    themeList: themeReducer,
+    todoList: todoReducer
 })
 
 export const store = configureStore({
