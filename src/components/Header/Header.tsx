@@ -1,23 +1,31 @@
-import { NavLink } from 'react-router-dom'
-import classes from './Header.module.scss'
-import { useDispatch } from 'react-redux'
+import { Container, HeaderWrapper, NavItem, ToggleButton } from './Header.styled'
+import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeAction } from '../../features/themeList'
+import { RootState } from "../../store";
+import { Sun, Moon } from "lucide-react";
 
 export const Header = () => {
-    const dispatch = useDispatch()
-    const getActiveClass = ({ isActive }: { isActive: boolean }): string => {
-        return isActive ? `${classes.active} ${classes.link}` : classes.link
-    }
-    return (
-        <header className={classes.header}>
-            <div className={classes.container}>
-                <NavLink to="/" className={getActiveClass}>ToDo</NavLink>
-                <NavLink to="/list" className={getActiveClass}>List</NavLink>
+    const dispatch = useDispatch();
+    const theme = useSelector((state: RootState) => state.themeList.theme);
+    const isLight = theme.name === "light";
 
-                <div className={classes.toggleButton}>
-                    <button onClick={() => dispatch(toggleThemeAction())}>toggle</button>
+    return (
+        <HeaderWrapper>
+            <Container>
+                <div>
+                    <NavItem to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+                        ToDo
+                    </NavItem>
+                    <NavItem to="/list" className={({ isActive }) => (isActive ? "active" : "")}>
+                        List
+                    </NavItem>
                 </div>
-            </div>
-        </header >
-    )
-}
+
+                <ToggleButton onClick={() => dispatch(toggleThemeAction())}>
+                    {isLight ? <Moon size={18} /> : <Sun size={18} />}
+                    {isLight ? "Dark" : "Light"}
+                </ToggleButton>
+            </Container>
+        </HeaderWrapper>
+    );
+};

@@ -8,8 +8,9 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+    background: ${({ theme }) => theme.colors.backgroundPrimary};
+    color: ${({ theme }) => theme.colors.textPrimary};
     transition: background-color .2s;
-    background-color: ${({ theme }) => theme.colors.backgroundSecondary};
     padding: 50px 0 0 0;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -23,5 +24,4 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     padding: 20px;
 } 
-
 `
