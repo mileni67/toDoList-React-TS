@@ -1,52 +1,42 @@
-import { ToDo } from '../../models/todo-item'
-import './ToDoList.scss'
-import { ToDoListItem } from "./ToDoListItem/ToDoListIltem"
+import React from "react";
+import { ToDo } from "../../models/todo-item";
+import { ToDoListItem } from "./ToDoListItem/ToDoListIltem";
+import { ToDoContainer, ToDoListStyled } from "./ToDoList.styled";
 
 
-export const ToDoList = (props: { todos: ToDo[], updateToDo: Function, deleteToDo: Function }) => {
-    const ckeckedList = () => {
-        return (
-            props.todos
-                .filter((item) => !item.isDone)
-                .map((item) => {
-                    return (
-                        <ToDoListItem
-                            toDoItem={item}
-                            key={item.id}
-                            updateToDo={props.updateToDo}
-                            deleteToDo={props.deleteToDo}
-                        />
-                    )
-                })
-        )
-    }
+interface ToDoListProps {
+    todos: ToDo[];
+    updateToDo: (todo: ToDo) => void;
+    deleteToDo: (todo: ToDo) => void;
+}
 
-    const unckeckedList = () => {
-        return (
-            props.todos
-                .filter((item) => item.isDone)
-                .map((item) => {
-                    return (
-                        <ToDoListItem
-                            toDoItem={item}
-                            key={item.id}
-                            updateToDo={props.updateToDo}
-                            deleteToDo={props.deleteToDo}
-                        />
-                    )
-                })
-        )
-    }
+export const ToDoList: React.FC<ToDoListProps> = ({ todos, updateToDo, deleteToDo }) => {
+    const failedList = todos
+        .filter((item) => !item.isDone)
+        .map((item) => (
+            <ToDoListItem
+                key={item.id}
+                toDoItem={item}
+                updateToDo={updateToDo}
+                deleteToDo={deleteToDo}
+            />
+        ));
+
+    const completedList = todos
+        .filter((item) => item.isDone)
+        .map((item) => (
+            <ToDoListItem
+                key={item.id}
+                toDoItem={item}
+                updateToDo={updateToDo}
+                deleteToDo={deleteToDo}
+            />
+        ));
 
     return (
-
-        <div className="todo-container">
-            <ul className="todo-list failed">
-                {ckeckedList()}
-            </ul>
-            <ul className="todo-list completed">
-                {unckeckedList()}
-            </ul>
-        </div>
-    )
-}
+        <ToDoContainer>
+            <ToDoListStyled $type="failed">{failedList}</ToDoListStyled>
+            <ToDoListStyled $type="completed">{completedList}</ToDoListStyled>
+        </ToDoContainer>
+    );
+};
