@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import './NotFound.scss';
+import { NotFoundAnimation, NotFoundContainer, NotFoundLink, NotFoundSubTitle, NotFoundTitle } from "./NotFound.styled";
+
 
 export const NotFound = () => {
     return (
-        <div className="notfound-container">
-            <div className="notfound-animation">
+        <NotFoundContainer>
+            <NotFoundAnimation>
                 <span>😿</span>
-            </div>
-            <h1 className="notfound-title">404</h1>
-            <p className="notfound-subtitle">Not Found</p>
-            <Link to="/" className="notfound-link">To Home</Link>
-        </div>
+            </NotFoundAnimation>
+            <NotFoundTitle>404</NotFoundTitle>
+            <NotFoundSubTitle>Not Found</NotFoundSubTitle>
+            <NotFoundLink to="/" >To Home</NotFoundLink>
+        </NotFoundContainer>
     );
 };
